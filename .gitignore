@@ -18,6 +18,7 @@ ENV/
 # OS generated files
 .DS_Store
 Thumbs.db
+.idea
 
 # Media and Static folders (prevents uploading user media files)
 /media/
