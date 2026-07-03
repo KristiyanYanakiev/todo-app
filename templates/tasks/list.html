@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Hi, {{ request.user.username }}!
+        Here are all your open tasks:
+    </h2>
+    <h5>Tasks in progress</h5>
+    {% for task in tasks_in_progress %}
+    <p>{{ task.title }}</p>
+    <a href="{% url 'task:details' task.id %}">Task Details</a>
+        {% empty %}
+        No tasks yet
+    {% endfor %}
+
+    <h5>Pending tasks</h5>
+    {% for task in pending_tasks %}
+    <p>{{ task.title }}</p>
+    <a href="{% url 'task:details' task.id %}">Task Details</a>
+        {% empty %}
+        No tasks yet
+    {% endfor %}
+
+
+    <h5>Completed tasks in the last 7 days</h5>
+    {% for task in completed_tasks %}
+    <p>{{ task.title }}</p>
+    <a href="{% url 'task:details' task.id %}">Task Details</a>
+        {% empty %}
+        No tasks yet
+    {% endfor %}
+</body>
+</html>

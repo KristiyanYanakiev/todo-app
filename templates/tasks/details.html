@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Title:{{ task.title }}
+    More info> {{ task.notes }}
+    Status:  {{ task.status }}
+    Last update:  {{ task.updated_at }}
+
+<a href="{% url 'task:edit-task' task.id %}">Update Task</a>
+<a href="{{ back_to_url }}">Back to Tasks List</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <h2>Hi, {{ request.user.username }}!
+        Here are all your completed tasks
+    </h2>
+   
+    {% for task in tasks_in_progress %}
+    <p>task.title</p>
+    {% empty %}
+        No tasks yet
+    {% endfor %}
+    
+</body>
+</html>
