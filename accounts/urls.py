@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView, PasswordResetView, PasswordRese
     PasswordResetConfirmView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView
 from django.urls import path, reverse_lazy
 
-from accounts.views import UserRegisterView, CustomLogoutView
+from accounts.views import UserRegisterView, CustomLogoutView, ProfileDetailsView
 
 app_name = 'accounts'
 
@@ -36,4 +36,5 @@ success_url = reverse_lazy('accounts:password_reset_done')
     path('password-change/done/',PasswordChangeDoneView.as_view(template_name='accounts/password-change-done.html'),
          name='password-change-done'),
 
+    path('<int:pk>/details/', ProfileDetailsView.as_view(), name='details')
 ]

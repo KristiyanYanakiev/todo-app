@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 UserModel = get_user_model()
 
@@ -33,6 +33,11 @@ class CustomLogoutView(LoginRequiredMixin, LogoutView):
 
     template_name = 'accounts/logout.html'
     http_method_names = ["get", "post", "options"]
-    next_page = reverse_lazy('accounts:login')
+    next_page = reverse_lazy('common:home')
+
+
+class ProfileDetailsView(DetailView):
+    model = UserModel
+    template_name = 'accounts/profile_details.html'
 
 

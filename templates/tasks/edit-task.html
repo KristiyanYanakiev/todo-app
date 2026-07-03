@@ -2,4 +2,6 @@
     {{ form }}
     {% csrf_token %}
     <button>Edit Task</button>
+    <a href="{% url 'tasks:list' %}" >Cancel</a>
+    
 </form>

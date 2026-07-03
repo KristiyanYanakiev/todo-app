@@ -12,6 +12,7 @@
     {{ form }}
     <button>Logout</button>
     {% csrf_token %}
+    <a href="{% url 'common:home' %}">Back to Home</a>
 </form>
 
 </body>

@@ -1,0 +1,6 @@
+<body>
+    Username:{{ user.username }}
+    Full name: {{ user.get_full_name }}
+    Email:  {{ user.get_email_field_name }}
+    
+<a href="{% url 'common:home' %}">Home</a>
