@@ -10,7 +10,7 @@ from task.models import Task
 
 
 
-class TasksList(ListView):
+class TasksList(LoginRequiredMixin, ListView):
     context_object_name = 'tasks'
     template_name = 'tasks/list.html'
 
@@ -35,7 +35,7 @@ class TasksList(ListView):
         return context
 
 
-class ArchiveTasksView(ListView):
+class ArchiveTasksView(LoginRequiredMixin, ListView):
 
     template_name = 'tasks/archive.html'
 
@@ -43,7 +43,7 @@ class ArchiveTasksView(ListView):
         return Task.objects.filter(owner=self.request.user, status=Status.COMPLETED)
 
 
-class TaskDetailsView(DetailView):
+class TaskDetailsView(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'tasks/details.html'
