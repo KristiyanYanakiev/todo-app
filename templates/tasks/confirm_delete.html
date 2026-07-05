@@ -1,8 +1,23 @@
- <h2>Hi, {{ request.user.username }}!
-        Are you sure you want to delete this task?
-    </h2>
+{% extends 'base.html' %}
 
- <form method="post">
-     {% csrf_token %}
-     <button>Delete</button>
- </form>
+{% block title %}Confirm Delete - ToDo App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+       <div class="card border-danger">
+           <div class="card-header bg-danger text-white">
+               <h4 class="mb-0">Confirm Deletion</h4>
+           </div>
+           <div class="card-body">
+               <p class="mb-4">Are you sure you want to delete this task? This action cannot be undone.</p>
+               <form method="post" class="d-inline">
+                   {% csrf_token %}
+                   <button type="submit" class="btn btn-danger">Delete Task</button>
+                   <a href="{% url 'task:list' %}" class="btn btn-secondary">Cancel</a>
+               </form>
+           </div>
+       </div>
+    </div>
+</div>
+{% endblock %}

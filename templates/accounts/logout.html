@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Hi {{ request.user.username }}, are you sure you want to log out? </h1>
+{% block title %}Logout - ToDo App{% endblock %}
 
-<form method="post">
-    {{ form }}
-    <button>Logout</button>
-    {% csrf_token %}
-    <a href="{% url 'common:home' %}">Back to Home</a>
-</form>
-
-</body>
-</html>
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">Confirm Logout</h4>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Hi {{ request.user.username }}, are you sure you want to log out?</p>
+                <form method="post" class="d-inline">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                    <a href="{% url 'common:home' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

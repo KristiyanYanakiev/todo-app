@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-     <h2>Hi, {{ request.user.username }}!
-        Here are all your completed tasks
-    </h2>
-   
+{% extends 'base.html' %}
+
+{% block title %}Archive - ToDo App{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2 class="mb-3">Completed Tasks</h2>
+    <a href="{% url 'task:list' %}" class="btn btn-secondary mb-3">Back to Tasks</a>
+</div>
+
+<div class="row">
     {% for task in tasks_in_progress %}
-    <p>task.title</p>
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <p class="card-text">{{ task.notes }}</p>
+                <a href="{% url 'task:details' task.id %}" class="btn btn-sm btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
     {% empty %}
-        No tasks yet
+    <div class="col-12">
+        <div class="alert alert-info">No completed tasks yet</div>
+    </div>
     {% endfor %}
-    
-</body>
-</html>
+</div>
+{% endblock %}

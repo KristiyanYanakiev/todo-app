@@ -1,11 +1,18 @@
-{% if messages %}
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-{% endif %}
+{% extends 'base.html' %}
 
-<h2> Welcome, {{ request.user.username }}!</h2>
-<a href="{% url 'accounts:logout' %}">Log out</a>
-<a href="{% url 'task:list' %}">My tasks</a>
-<a href="{% url 'task:archive' %}">Tasks archive</a>
-<a href="{% url 'accounts:details' request.user.id %}">Profile Details</a>
+{% block title %}Home - ToDo App{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-3">Welcome, {{ request.user.username }}!</h2>
+        <div class="btn-group" role="group">
+            <a href="{% url 'task:create-task' %}" class="btn btn-success">Create Task</a>
+            <a href="{% url 'task:list' %}" class="btn btn-primary">My Tasks</a>
+            <a href="{% url 'task:archive' %}" class="btn btn-info">Archive</a>
+            <a href="{% url 'accounts:details' request.user.id %}" class="btn btn-secondary">Profile</a>
+            <a href="{% url 'accounts:logout' %}" class="btn btn-danger">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

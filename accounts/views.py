@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
@@ -29,6 +29,14 @@ class UserRegisterView(UserPassesTestMixin, CreateView):
         login(self.request, user)
 
         return response
+
+
+class CustomLoginView(UserPassesTestMixin, LoginView):
+    template_name = 'accounts/login.html'
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
 class CustomLogoutView(LoginRequiredMixin, LogoutView):
 
     template_name = 'accounts/logout.html'

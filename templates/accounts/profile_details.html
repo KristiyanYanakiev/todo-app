@@ -1,6 +1,32 @@
-<body>
-    Username:{{ user.username }}
-    Full name: {{ user.get_full_name }}
-    Email:  {{ user.get_email_field_name }}
-    
-<a href="{% url 'common:home' %}">Home</a>
+{% extends 'base.html' %}
+
+{% block title %}Profile Details - ToDo App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">Profile Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Username:</strong>
+                    <p>{{ user.username }}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Full Name:</strong>
+                    <p>{{ user.get_full_name }}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Email:</strong>
+                    <p>{{ user.email }}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'common:home' %}" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,6 @@
 from datetime import timedelta
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -57,7 +59,7 @@ class TaskDetailsView(DetailView):
 
         return context
 
-class CreateTaskView(CreateView):
+class CreateTaskView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/create-task.html'
     form_class = CreateTaskForm
     model = Task
@@ -71,14 +73,14 @@ class CreateTaskView(CreateView):
         return super().form_valid(form)
 
 
-class EditTask(UpdateView):
+class EditTask(LoginRequiredMixin, UpdateView):
     model = Task
     success_url = reverse_lazy('common:home')
     template_name = 'tasks/edit-task.html'
     form_class = UpdateTaskForm
 
 
-class DeleteTask(DeleteView):
+class DeleteTask(LoginRequiredMixin, DeleteView):
     template_name = 'tasks/confirm_delete.html'
     model = Task
 
